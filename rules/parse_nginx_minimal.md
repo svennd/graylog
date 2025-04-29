@@ -12,8 +12,9 @@ log_format graylog escape=json '{ "time": "$time_iso8601", '
         '"bytes": $body_bytes_sent, '
         '"referer": "$http_referer", '
         '"agent": "$http_user_agent", '
-        '"nginx_access": true }';
+        '"nginx_access": "$APP" }';
 ```
+change $APP 
 
 the logging rule :
 ```

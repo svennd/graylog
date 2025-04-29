@@ -7,5 +7,5 @@ then
     
     let json = parse_json(to_string(parsed["json_message"]));
     set_fields(to_map(json));
-    
+    route_to_stream(name : "app - nginx", remove_from_default : true );
 end
