@@ -20,3 +20,5 @@ the logging rule :
 access_log syslog:server=$IP:$PORT graylog;
 ```
 change $IP and $PORT
+
+_note: we can place those syslog rule only in relevant parts (eg: set access_log off; for static files)_
