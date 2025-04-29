@@ -1,0 +1,11 @@
+rule "parse - nginx - minimal"
+when
+    contains(to_string($message.message), "nginx:")
+then
+    let msg = to_string($message.message);
+    let parsed = grok(pattern: "%{WORD:source} nginx: %{GREEDYDATA:json_message}", value: msg, only_named_captures: true);
+    
+    let json = parse_json(to_string(parsed["json_message"]));
+    set_fields(to_map(json));
+    
+end
