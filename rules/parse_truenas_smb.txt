@@ -8,4 +8,5 @@ then
             );
     let json = flatten_json(value: to_string(parsed["json_message"]), array_handler: "flatten", stringify: false);
    set_fields(to_map(json));
+   route_to_stream(name : "app - truenas", remove_from_default : true );
 end
