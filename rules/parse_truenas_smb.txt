@@ -1,0 +1,11 @@
+rule "parse - truenas - smb"
+when
+    contains(to_string($message.message), "TNAUDIT_SMB")
+then
+    let parsed = grok(
+            pattern: "%{DATA:source_server} TNAUDIT_SMB\\[%{POSINT:smb_uid}\\]: @cee:%{GREEDYDATA:json_message}", 
+            value: to_string($message.message)
+            );
+    let json = flatten_json(value: to_string(parsed["json_message"]), array_handler: "flatten", stringify: false);
+   set_fields(to_map(json));
+end
